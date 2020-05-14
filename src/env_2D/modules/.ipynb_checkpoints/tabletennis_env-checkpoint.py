@@ -19,15 +19,15 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import matplotlib.patches as pat
 
-from modules.environment import Environment
-from modules.obj import Ball, Box
-from modules.contact import Contact, Contact_Penalty
+from environment import Environment
+from obj import Ball, Box
+from contact import Contact, Contact_Penalty
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
 tabletennis = Environment(ax=ax)
-ball = Ball(r=0.20, M=0.0027, color='orange')
+ball = Ball(r=0.02, M=0.0027, color='orange')
 table = Box(w=2.74, h=0.01, x=0, y=0, fix=True, color='blue')
 net = Box(w=0.15, h=0.01, x=0, y=0.075, theta=np.pi/2, fix=True, color='gray')
 
@@ -42,7 +42,7 @@ tabletennis.add_obj(ball)
 #tabletennis.add_contact(Contact(net,ball))
 tabletennis.add_contact(Contact_Penalty(table,ball))
 
-ani = animation.FuncAnimation(fig, tabletennis.step, interval=10, frames=3000, repeat=True)
+ani = animation.FuncAnimation(fig, tabletennis.render, interval=1, frames=300, repeat=True)
 plt.show()
 
 np.pi

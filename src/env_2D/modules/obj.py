@@ -72,7 +72,7 @@ class Obj():
         self.a_y = self.a_y + F_y / self.M
         self.a_theta = self.a_theta + Torque / self.I
         
-    def move(self, dt):
+    def step(self, dt):
         if self.fix is False:
             # update position
             self.x = self.x + self.v_x * dt
@@ -93,7 +93,7 @@ class Ball(Obj):
     def __init__(self, r, x=0, y=0, theta=0, M=1, I=1, fix=False, color='black'):
         super().__init__(x=x, y=y, theta=theta, M=M, I=I, fix=fix, color=color)
         self.r = r
-        self.I = 2.0/3.0*M*r**2
+        self.I = 2.0/3.0*self.M*self.r**2
         self.type = 'ball'
         
     def set_mass(self, M, I=None):
